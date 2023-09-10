@@ -1,7 +1,6 @@
 package com.monster.shardingjdbc.controller;
 
 import com.monster.shardingjdbc.core.CommonRequest;
-import com.monster.shardingjdbc.entity.Course;
 import com.monster.shardingjdbc.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

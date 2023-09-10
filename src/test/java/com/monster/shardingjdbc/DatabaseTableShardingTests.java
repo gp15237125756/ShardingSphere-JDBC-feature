@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class DatabaseTableShardingTests {
@@ -37,5 +39,17 @@ class DatabaseTableShardingTests {
         courseQueryWrapper.eq("cid", 901973786524385281L);
         Course course = courseMapper.selectOne(courseQueryWrapper);
         System.out.println(course);
+    }
+
+    /**
+     * 范围分库分表查询
+     */
+    @Test
+    void qryRangeEduCourse() {
+        QueryWrapper<Course> courseQueryWrapper = new QueryWrapper<>();
+        courseQueryWrapper.between("user_id", 50, 200);
+        courseQueryWrapper.eq("cid", 901973786524385281L);
+        List<Course> course = courseMapper.selectList(courseQueryWrapper);
+        System.out.println(course.size());
     }
 }

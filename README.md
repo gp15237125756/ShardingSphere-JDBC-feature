@@ -7,5 +7,10 @@
  3. `ReadWriteTest`表示读写分离测试用例,在application.properties中配置profile=04
  4. `TableShardingTests`表示不分库只分表测试用例,在application.properties中配置profile=01
 
+## 分片算法
+ 1. 标准分片算法
+ 2. Hint分片算法
+
+
 ## 相关文档
  https://www.yuque.com/ynigapn/igdep1/oxd9bkex2lv7zcib/edit

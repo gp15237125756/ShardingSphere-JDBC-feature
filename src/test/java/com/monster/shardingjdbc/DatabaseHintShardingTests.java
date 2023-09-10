@@ -9,45 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class TableShardingTests {
+class DatabaseHintShardingTests {
 
     @Autowired
     private CourseMapper courseMapper;
-    /**
-     * 分表不分库
-     */
-    @Test
-    void addCourse() {
-        for (int i = 0; i < 10; i++) {
-            Course course = new Course();
-            course.setCname("Java" + i);
-            course.setUserId(100L);
-            course.setCstatus("0" + i);
-            courseMapper.insert(course);
-        }
-    }
 
     /**
-     * 分表不分库
+     * hint分库测试
      */
     @Test
-    void qryCourse() {
+    void qryEduCourse() {
         QueryWrapper<Course> courseQueryWrapper = new QueryWrapper<>();
-        courseQueryWrapper.eq("cid", 901957549274693633L);
-        Course course = courseMapper.selectOne(courseQueryWrapper);
-        System.out.println(course);
-    }
-
-    /**
-     * 复合分库（多个分片key）
-     */
-    @Test
-    void qryCourseComplexKeys() {
-        QueryWrapper<Course> courseQueryWrapper = new QueryWrapper<>();
-        courseQueryWrapper.eq("cid", 901);
         courseQueryWrapper.eq("user_id", 101);
+        courseQueryWrapper.eq("cid", 901);
         Course course = courseMapper.selectOne(courseQueryWrapper);
         System.out.println(course);
     }
